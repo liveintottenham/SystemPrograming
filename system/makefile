@@ -1,5 +1,5 @@
 OBJS = divide.o add.o subtract.o multiply.o
-static.out : staticlib.a
+staticout : staticlib.a
 	cd ..; gcc -I./lib -L./lib main.c lib/$^ -o $@
 divide.o : divide.c
 	gcc -c -fPIC $<
@@ -13,4 +13,4 @@ staticlib.a : $(OBJS)
 	ar rcs $@ $^
 clean :
 	rm -f staticlib.a $(OBJS)
-	cd ..; rm static.out
+	cd ..; rm staticout
