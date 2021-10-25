@@ -1,0 +1,15 @@
+OBJS = divide.o add.o subtract.o multiply.o
+libshared.so.1.0.1 : $(OBJS)
+	gcc -shared -Wl,-soname,libshared.so.1 -o libshared.so.1.0.1 $^
+	ln -s libshared.so.1.0.1 libshared.so.1
+	ln -s libshared.so.1.0.1 libshared.so
+divide.o : divide.c
+	gcc -c -fPIC $<
+add.o : add.c
+	gcc -c $<
+subtract.o : subtract.c
+	gcc -c $<
+multiply.o : multiply.c
+	gcc -c $<
+clean :
+	rm -f libshared.so.1.0.1 libshared.so.1 libshared.so $(OBJS) 
